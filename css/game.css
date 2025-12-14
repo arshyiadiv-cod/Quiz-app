@@ -1,0 +1,126 @@
+#loader {
+  width: 100px;
+  height: 100px;
+  border: 7px solid red;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1.5s linear infinite;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#container {
+  display: none;
+  width: 700px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.header div {
+  display: flex;
+  align-items: center;
+}
+
+.header p {
+  color: #6757d9;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.header span {
+  display: inline-block;
+  background-color: #fff;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #6757d9;
+  border-radius: 4px;
+}
+
+#question-box {
+  display: flex;
+  flex-direction: column;
+}
+
+h3 {
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(76, 76, 216);
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 60px 0 30px;
+}
+
+.answer-text {
+  background-color: rgb(247, 246, 244);
+  border: none;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 15px;
+  text-align: center;
+  border: 2px solid rgb(247, 247, 247);
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  font-weight: bold;
+}
+.answer-text:hover {
+  background-color: #e6e4ff;
+  border: 2px solid #e6e4ff;
+}
+
+
+
+#next-button{
+    color: rgb(0, 0, 0);
+  background-color: #e6e4ff;
+  font-size: 1rem;
+  border: 2px solid  #a39191 ;
+  border-radius: 1px;
+  padding: 8px 15;
+  margin: 20px 20px 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  font-weight: bold;
+    width: 55px;
+  height: 30px;
+}
+#finish-button {
+  color: rgb(0, 0, 0);
+  background-color: #e6e4ff;
+  font-size: 1rem;
+  border: 2px solid  #a39191 ;
+  border-radius: 1px;
+  padding: 8px 15;
+  margin: 20px 20px 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  font-weight: bold;
+  width: 55px;
+  height: 30px;
+
+}
+
+#finish-button:hover{
+      background-color: #a39191;
+  color: #620039;
+}
+
+#next-button:hover {
+  background-color: #a39191;
+  color:  #620039;
+}
