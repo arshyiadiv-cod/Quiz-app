@@ -21,6 +21,7 @@ const fetchData = async () => {
   start();
 };
 
+
 const start = () => {
   showQuestion();
   loader.style.display = "none";
