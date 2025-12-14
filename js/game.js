@@ -34,7 +34,7 @@ const showQuestion = () => {
 
     correctAnswer=correctAnswerIndex;
     questionText.innerText=question
-    answerList.onbeforematch((button,index)=>
+    answerList?.onbeforematch((button,index)=>
     {
       button.innerText=answers[index];
     })
