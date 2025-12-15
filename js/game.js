@@ -3,7 +3,7 @@ import formatData from "./helper.js";
 const loader = document.getElementById("loader");
 const container = document.getElementById("container");
 const questionText = document.getElementById("question-text");
-const answerList = document.getElementById(".answer-list");
+const answerText = document.getElementById(".answer-text")
 
 const URL = "https://opentdb.com/api.php?amount=10&type=multiple";
 let formattedData = null;
@@ -34,7 +34,7 @@ const showQuestion = () => {
 
     correctAnswer=correctAnswerIndex;
     questionText.innerText=question
-    answerList?.onbeforematch((button,index)=>
+    answerText?.onbeforematch((button,index)=>
     {
       button.innerText=answers[index];
     })
