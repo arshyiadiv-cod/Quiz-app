@@ -5,12 +5,14 @@ const container = document.getElementById("container");
 const questionText = document.getElementById("question-text");
 const answerButtons = document.querySelectorAll(".answer-text");
 
+
 const URL = "https://opentdb.com/api.php?amount=10&type=multiple";
+
 
 let formattedData = [];
 let questionIndex = 0;
 let correctAnswer = null;
-
+/////////////////////////////////////////////////////////////////////////////////////////
 
 const fetchData = async () => {
   try {
@@ -23,6 +25,10 @@ const fetchData = async () => {
     console.error("error", err);
   }
 };
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 
 const start = () => {
@@ -30,6 +36,8 @@ const start = () => {
   container.style.display = "block";
   showQuestion();
 };
+/////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 const showQuestion = () => {
@@ -42,30 +50,47 @@ const showQuestion = () => {
 
   answerButtons.forEach((button, index) => {
     button.innerText = answers[index];
+    button.disabled = false;
+    button.classList.remove("correct", "wrong");
     button.onclick = () => checkAnswer(index);
   });
 };
 
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 const checkAnswer = (index) => {
+  answerButtons.forEach((btn) => (btn.disabled = true));
+
   if (index === correctAnswer) {
-    alert("✅ right");
+    answerButtons[index].classList.add("correct");
   } else {
-    alert("❌ wrong");
+    answerButtons[index].classList.add("wrong");
+
+    answerButtons[correctAnswer].classList.add("correct");
   }
 
-  nextQuestion();
+
+
+  setTimeout(() => {
+    questionIndex++;
+
+    if (questionIndex < formattedData.length) {
+      showQuestion();
+    } else {
+      alert("🎉 The End Quiz");
+    }
+  }, 1500);
 };
 
 
-const nextQuestion = () => {
-  questionIndex++;
 
-  if (questionIndex < formattedData.length) {
-    showQuestion();
-  } else {
-    alert("🎉 the end quiz");
-  }
-};
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 window.addEventListener("load", fetchData);

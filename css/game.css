@@ -124,3 +124,35 @@ h3 {
   background-color: #a39191;
   color:  #620039;
 }
+
+
+.answer-text {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  background: #e0e0e0;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+.answer-text:hover {
+  background: #9d8686;
+}
+
+.answer-text:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.answer-text.correct {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.answer-text.wrong {
+  background-color: #f44336;
+  color: #fff;
+}
