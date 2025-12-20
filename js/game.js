@@ -7,10 +7,13 @@ const answerButtons = document.querySelectorAll(".answer-text");
 const scoreText = document.getElementById("scores");
 const nextButton = document.getElementById("next-button");
 const questionNumber = document.getElementById("question-number");
+const finishButton = document.getElementById("finish-button");
 
+const level = localStorage.getItem("level") || "medium";
 const CORRECT_BONUS = 10;
 
-const URL = "https://opentdb.com/api.php?amount=10&type=multiple";
+// ✅ اصلاح URL (خیلی مهم)
+const URL = `https://opentdb.com/api.php?amount=10&difficulty=${level}&type=multiple`;
 
 let formattedData = [];
 let questionIndex = 0;
@@ -18,13 +21,12 @@ let correctAnswer = null;
 let score = 0;
 let answered = false;
 
-/////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 const fetchData = async () => {
   try {
     const response = await fetch(URL);
     const json = await response.json();
-
     formattedData = formatData(json.results);
     start();
   } catch (err) {
@@ -32,17 +34,23 @@ const fetchData = async () => {
   }
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 const start = () => {
   loader.style.display = "none";
   container.style.display = "block";
   nextButton.disabled = true;
+
+  questionIndex = 0;
+  score = 0;
+
+  scoreText.innerText = score;
   questionNumber.innerText = questionIndex + 1;
+
   showQuestion();
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 const showQuestion = () => {
   const { question, answers, correctAnswerIndex } =
@@ -64,16 +72,16 @@ const showQuestion = () => {
   });
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 const checkAnswer = (number) => {
   if (answered) return;
   answered = true;
 
+  const selectedAnswer = Number(number);
+
   answerButtons.forEach((btn) => (btn.disabled = true));
   nextButton.disabled = false;
-
-  const selectedAnswer = Number(number);
 
   if (selectedAnswer === correctAnswer) {
     answerButtons[selectedAnswer].classList.add("correct");
@@ -85,7 +93,7 @@ const checkAnswer = (number) => {
   }
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 const nextHandler = () => {
   questionIndex++;
@@ -94,11 +102,19 @@ const nextHandler = () => {
     questionNumber.innerText = questionIndex + 1;
     showQuestion();
   } else {
-    alert("🎉 The End Quiz");
+    finishHandler();
   }
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
+
+const finishHandler = () => {
+  alert(`🎉 Quiz Finished!\nYour Score: ${score}`);
+  start(); 
+};
+
+//////////////////////////////////////////////////
 
 window.addEventListener("load", fetchData);
 nextButton.addEventListener("click", nextHandler);
+finishButton.addEventListener("click", finishHandler);
